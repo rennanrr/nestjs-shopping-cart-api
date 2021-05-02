@@ -1,7 +1,7 @@
 import { createConnection, ConnectionOptions } from 'typeorm';
 import { configService } from '../config/config.service';
 import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
-import { ShoppingCart } from '../entities/shopping-cart.entity';
+import { ShoppingCart } from '../entity/shopping-cart.entity';
 import { ShoppingCartDTO } from '../shopping-cart/shopping-cart.dto';
 
 async function run() {

@@ -2,7 +2,7 @@ import { createConnection, ConnectionOptions } from 'typeorm';
 import { configService } from '../config/config.service';
 import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
 import { ShoppingCartDTO } from '../shopping-cart/shopping-cart.dto';
-import { ProductCart } from '../entities/product-cart.entity';
+import { ProductCart } from '../entity/product-cart.entity';
 import { ProductCartService } from '../product-cart/product-cart.service';
 
 async function run() {

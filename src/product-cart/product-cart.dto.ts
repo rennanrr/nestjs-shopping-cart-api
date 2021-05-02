@@ -1,7 +1,7 @@
 import { ApiModelProperty } from '@nestjs/swagger';
 import { IsDecimal, IsNumber, IsObject, IsUUID, } from 'class-validator';
-import { ShoppingCart } from '../entities/shopping-cart.entity';
-import { ProductCart } from '../entities/product-cart.entity';
+import { ShoppingCart } from '../entity/shopping-cart.entity';
+import { ProductCart } from '../entity/product-cart.entity';
 
 export class ProductCartDTO implements Readonly<ProductCartDTO> {
   @ApiModelProperty({ required: true })
