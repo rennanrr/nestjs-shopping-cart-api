@@ -11,8 +11,14 @@ export class ShoppingCartService {
   ) { }
 
   public async getAll(): Promise<ShoppingCartDTO[]> {
-    return await this.repo.find()
-      .then(carts => carts.map(e => ShoppingCartDTO.fromEntity(e)));
+    const listFromRepo = await this.repo.find({ relations: ["products"] });
+    const listFromDTO = await Promise.all(
+      listFromRepo.map(async cart => 
+        await ShoppingCartDTO.fromEntity(cart)
+        )
+      );
+    
+    return listFromDTO
   }
 
   public async create(dto: ShoppingCartDTO): Promise<ShoppingCartDTO> {

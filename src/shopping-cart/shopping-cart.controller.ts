@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body } from '@nestjs/common';
 import { ShoppingCartService } from './shopping-cart.service';
 import { ShoppingCartDTO } from './shopping-cart.dto';
 
-@Controller('item')
+@Controller('cart')
 export class ShoppingCartController {
   constructor(private service: ShoppingCartService) { }
 

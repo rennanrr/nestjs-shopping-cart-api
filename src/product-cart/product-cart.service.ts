@@ -12,11 +12,11 @@ export class ProductCartService {
 
   public async getAll(): Promise<ProductCartDTO[]> {
     return await this.repo.find()
-      .then(carts => carts.map(e => ProductCartDTO.fromEntity(e)));
+      .then(async carts => await Promise.all(carts.map(e => ProductCartDTO.fromEntity(e))));
   }
 
   public async create(dto: ProductCartDTO): Promise<ProductCartDTO> {
-    return this.repo.save(ProductCartDTO.toEntity(dto))
+    return this.repo.save(dto)
       .then(e => ProductCartDTO.fromEntity(e));
   }
 }

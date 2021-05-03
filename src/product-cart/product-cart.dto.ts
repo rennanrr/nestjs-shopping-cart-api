@@ -1,6 +1,7 @@
 import { ApiModelProperty } from '@nestjs/swagger';
-import { IsDecimal, IsNumber, IsString, IsUUID, } from 'class-validator';
+import { IsDecimal, IsNumber, IsObject, IsString, IsUUID, } from 'class-validator';
 import { ProductCart } from '../entity/product-cart.entity';
+import { ShoppingCart } from '../entity/shopping-cart.entity';
 
 export class ProductCartDTO implements Readonly<ProductCartDTO> {
   @ApiModelProperty({ required: true })
@@ -28,10 +29,9 @@ export class ProductCartDTO implements Readonly<ProductCartDTO> {
     return it;
   }
 
-  public static fromEntity(entity: ProductCart) {
+  public static async fromEntity(entity: ProductCart) {
     return this.from({
       id: entity.id,
-      cartId: entity.cartId.id,
       price: entity.price,
       quantity: entity.quantity
     });
@@ -40,7 +40,7 @@ export class ProductCartDTO implements Readonly<ProductCartDTO> {
   public static toEntity(dto: Partial<ProductCartDTO>) {
     const it = new ProductCart();
     it.id = dto.id;
-    it.cartId.id = dto.cartId;
+    //it.cart = {id: dto.cartId};
     it.price = dto.price;
     it.quantity = dto.quantity;
     it.createDateTime = new Date();

@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 import { BaseEntity } from './base.entity';
 import { ShoppingCart } from './shopping-cart.entity';
 
@@ -7,10 +7,14 @@ export class ProductCart extends BaseEntity {
   @PrimaryColumn('uuid')
   id: string;
 
-  @ManyToOne(() => ShoppingCart, (shoppingCart: ShoppingCart) => shoppingCart.id)
-  cartId: ShoppingCart;
+  @Column({ name: 'cartId', type: 'uuid' })
+  cartId: string;
 
-  @Column({ type: "decimal", precision: 5, scale: 2 })
+  @ManyToOne(() => ShoppingCart, (shoppingCart: ShoppingCart) => shoppingCart.products)
+  @JoinColumn({ name: 'cartId' })
+  cart: ShoppingCart;
+
+  @Column({ type: 'decimal', precision: 5, scale: 2 })
   price: number;
 
   @Column({ type: 'integer', default: 1 })

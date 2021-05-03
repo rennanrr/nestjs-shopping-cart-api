@@ -17,24 +17,26 @@ async function run() {
   const connection = await createConnection(opt as ConnectionOptions);
   const cartService = new ShoppingCartService(connection.getRepository(ShoppingCart));
   const productService = new ProductCartService(connection.getRepository(ProductCart));
-  const work = _.range(1, 10)
+  const work = _.range(21, 31)
   .map(iterator => 
     ShoppingCartDTO.from({
-      userId:`f38f2e4e-017c-4bb0-8733-ebfe63676e1${iterator}`
+      userId:`f38f2e4e-017c-4bb0-8733-ebfe63676e${iterator}`
     })
   )
   .map(cartDTO => 
     cartService.create(cartDTO).then(cart => {
       console.log('Shopping Car added', cart.id);
-      productService.create(
-        ProductCartDTO.from({
-          cartId: cart.id,
-          price: Math.random() * 10,
-          quantity: Math.floor(Math.random() * 10)
-        })
-      )
+      return cart
     })
-  )
+  ).map(async cart => {
+    productService.create(
+      ProductCartDTO.from({
+        cartId: (await cart).id,
+        price: Math.random() * 10,
+        quantity: Math.floor(Math.random() * 10)
+      })
+    )
+  })
 
   return await Promise.all(work);
 }
