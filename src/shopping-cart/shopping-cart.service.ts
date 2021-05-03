@@ -17,7 +17,6 @@ export class ShoppingCartService {
         await ShoppingCartDTO.fromEntity(cart)
         )
       );
-    
     return listFromDTO
   }
 

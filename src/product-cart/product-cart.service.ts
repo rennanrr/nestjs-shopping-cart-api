@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 import { ProductCartDTO } from './product-cart.dto';
 import { ProductCart } from '../entity/product-cart.entity';
 
@@ -18,5 +18,9 @@ export class ProductCartService {
   public async create(dto: ProductCartDTO): Promise<ProductCartDTO> {
     return this.repo.save(dto)
       .then(e => ProductCartDTO.fromEntity(e));
+  }
+
+  public async delete(id: string): Promise<DeleteResult>{
+    return this.repo.delete({id:id});
   }
 }

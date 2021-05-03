@@ -1,6 +1,7 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Delete, Param } from '@nestjs/common';
 import { ProductCartService } from './product-cart.service';
 import { ProductCartDTO } from './product-cart.dto';
+import { DeleteResult } from 'typeorm';
 
 @Controller('product')
 export class ProductCartController {
@@ -14,6 +15,12 @@ export class ProductCartController {
   @Post()
   public async post(@Body() dto: ProductCartDTO): Promise<ProductCartDTO> {
     return this.service.create(dto);
+  }
+
+  @Delete(':id')
+  public async remove(@Param('id') id: string): Promise<DeleteResult> {
+    console.log(id);
+    return this.service.delete(id);
   }
 
 }
