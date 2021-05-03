@@ -1,6 +1,5 @@
 import { ApiModelProperty } from '@nestjs/swagger';
-import { IsDecimal, IsNumber, IsObject, IsUUID, } from 'class-validator';
-import { ShoppingCart } from '../entity/shopping-cart.entity';
+import { IsDecimal, IsNumber, IsString, IsUUID, } from 'class-validator';
 import { ProductCart } from '../entity/product-cart.entity';
 
 export class ProductCartDTO implements Readonly<ProductCartDTO> {
@@ -9,12 +8,8 @@ export class ProductCartDTO implements Readonly<ProductCartDTO> {
   id: string;
 
   @ApiModelProperty({ required: true })
-  @IsObject()
-  cart: ShoppingCart;
-
-  @ApiModelProperty({ required: true })
-  @IsUUID()
-  productId: string;
+  @IsString()
+  cartId: string;
 
   @ApiModelProperty({ required: true })
   @IsDecimal()
@@ -27,9 +22,8 @@ export class ProductCartDTO implements Readonly<ProductCartDTO> {
   public static from(dto: Partial<ProductCartDTO>) {
     const it = new ProductCartDTO();
     it.id = dto.id;
-    it.cart = dto.cart;
+    it.cartId = dto.cartId;
     it.price = dto.price;
-    it.productId = dto.productId;
     it.quantity = dto.quantity;
     return it;
   }
@@ -37,9 +31,8 @@ export class ProductCartDTO implements Readonly<ProductCartDTO> {
   public static fromEntity(entity: ProductCart) {
     return this.from({
       id: entity.id,
-      cart: entity.cart,
+      cartId: entity.cartId.id,
       price: entity.price,
-      productId: entity.productId,
       quantity: entity.quantity
     });
   }
@@ -47,9 +40,8 @@ export class ProductCartDTO implements Readonly<ProductCartDTO> {
   public static toEntity(dto: Partial<ProductCartDTO>) {
     const it = new ProductCart();
     it.id = dto.id;
-    it.cart = dto.cart;
+    it.cartId.id = dto.cartId;
     it.price = dto.price;
-    it.productId = dto.productId;
     it.quantity = dto.quantity;
     it.createDateTime = new Date();
     return it;

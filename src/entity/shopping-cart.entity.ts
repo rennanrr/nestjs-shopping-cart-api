@@ -10,6 +10,6 @@ export class ShoppingCart extends BaseEntity {
   @Column('uuid', { unique: true })
   userId: string;
 
-  @OneToMany(() => ProductCart, (product: ProductCart) => product.cart)
-  product: ProductCart[];
+  @OneToMany(() => ProductCart, (product: ProductCart) => product.id)
+  products: ProductCart[];
 }

@@ -27,7 +27,7 @@ export class ShoppingCartDTO implements Readonly<ShoppingCartDTO> {
     return this.from({
       id: entity.id,
       userId: entity.userId,
-      product: entity.product
+      product: entity.products
     });
   }
 

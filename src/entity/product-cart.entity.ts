@@ -8,10 +8,7 @@ export class ProductCart extends BaseEntity {
   id: string;
 
   @ManyToOne(() => ShoppingCart, (shoppingCart: ShoppingCart) => shoppingCart.id)
-  cart: ShoppingCart;
-
-  @Column('uuid')
-  productId: string;
+  cartId: ShoppingCart;
 
   @Column({ type: "decimal", precision: 5, scale: 2 })
   price: number;

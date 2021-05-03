@@ -12,8 +12,7 @@
       "start:prod": "ts-node -r dotenv/config -r tsconfig-paths/register src/main.ts",
       "start:dev": "nodemon --config nodemon.json",
       "start:dev:db": "./src/scripts/start-db.sh",
-      "start:dev:db:seed:cart": "ts-node -r tsconfig-paths/register src/scripts/seedShoppingCart.ts",
-      "start:dev:db:seed:product": "ts-node -r tsconfig-paths/register src/scripts/seedProduct.ts",
+      "start:dev:db:seed": "ts-node -r tsconfig-paths/register src/scripts/seed.ts",
       "start:debug": "nest start --debug --watch",
       "lint": "tslint -p tsconfig.json -c tslint.json",
       "test": "jest",
@@ -35,13 +34,14 @@
       "class-transformer": "^0.2.3",
       "class-validator": "^0.10.2",
       "dotenv": "^8.1.0",
+      "lodash": "^4.17.21",
+      "mysql": "^2.14.1",
       "pg": "^7.12.1",
       "reflect-metadata": "^0.1.10",
       "rimraf": "^3.0.0",
       "rxjs": "^6.5.3",
       "swagger-ui-express": "^4.1.2",
-      "typeorm": "0.2.32",
-      "mysql": "^2.14.1"
+      "typeorm": "0.2.32"
    },
    "devDependencies": {
       "@nestjs/cli": "^6.9.0",
