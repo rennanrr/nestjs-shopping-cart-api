@@ -1,8 +1,8 @@
 ## Tech Stack
-- Nest
+- NestJS
 - Typescript
-- Mongoose
-- Docker (MongoDB)
+- TypeORM
+- Docker (PostgreSQL)
 
 ## Routes:
 You can find the routes on /api 
