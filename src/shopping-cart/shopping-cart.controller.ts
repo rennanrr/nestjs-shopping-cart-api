@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Query, Res, Response } from '@nestjs/common';
 import { ShoppingCartService } from './shopping-cart.service';
 import { ShoppingCartDTO } from './shopping-cart.dto';
 
@@ -7,8 +7,8 @@ export class ShoppingCartController {
   constructor(private service: ShoppingCartService) { }
 
   @Get()
-  public async getAll(): Promise<ShoppingCartDTO[]> {
-    return await this.service.getAll()
+  public async getAll(@Query() reqParams: {id?: string, userId?: string}): Promise<ShoppingCartDTO[]> {
+    return await this.service.getAll(reqParams);
   }
 
   @Post()

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DeleteResult, Repository } from 'typeorm';
 import { ProductCartDTO } from './product-cart.dto';
-import { ProductCart } from '../entity/product-cart.entity';
+import { ProductCart } from '../../entity/product-cart.entity';
 
 @Injectable()
 export class ProductCartService {

@@ -10,14 +10,19 @@ export class ShoppingCartService {
     @InjectRepository(ShoppingCart) private readonly repo: Repository<ShoppingCart>,
   ) { }
 
-  public async getAll(): Promise<ShoppingCartDTO[]> {
-    const listFromRepo = await this.repo.find({ relations: ["products"] });
-    const listFromDTO = await Promise.all(
-      listFromRepo.map(async cart => 
-        await ShoppingCartDTO.fromEntity(cart)
-        )
-      );
-    return listFromDTO
+  public async getAll(params: {id?:string, userId?: string}): Promise<ShoppingCartDTO[]> {
+    try {
+      const listFromRepo = await this.repo.find({ relations: ["products"], where:{...params} });
+      const listFromDTO = await Promise.all(
+        listFromRepo.map(async cart => 
+          await ShoppingCartDTO.fromEntity(cart)
+          )
+        );
+      return listFromDTO
+    }
+    catch(error) {
+      return error;
+    }
   }
 
   public async create(dto: ShoppingCartDTO): Promise<ShoppingCartDTO> {

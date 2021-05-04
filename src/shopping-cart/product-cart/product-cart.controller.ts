@@ -3,7 +3,7 @@ import { ProductCartService } from './product-cart.service';
 import { ProductCartDTO } from './product-cart.dto';
 import { DeleteResult } from 'typeorm';
 
-@Controller('product')
+@Controller('product-cart')
 export class ProductCartController {
   constructor(private service: ProductCartService) { }
 
@@ -19,7 +19,6 @@ export class ProductCartController {
 
   @Delete(':id')
   public async remove(@Param('id') id: string): Promise<DeleteResult> {
-    console.log(id);
     return this.service.delete(id);
   }
 

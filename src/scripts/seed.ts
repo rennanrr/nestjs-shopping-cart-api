@@ -4,9 +4,9 @@ import { configService } from '../config/config.service';
 import { ShoppingCartService } from '../shopping-cart/shopping-cart.service';
 import { ShoppingCart } from '../entity/shopping-cart.entity';
 import { ShoppingCartDTO } from '../shopping-cart/shopping-cart.dto';
-import { ProductCartService } from '../product-cart/product-cart.service';
+import { ProductCartService } from '../shopping-cart/product-cart/product-cart.service';
 import { ProductCart } from '../entity/product-cart.entity';
-import { ProductCartDTO } from '../product-cart/product-cart.dto';
+import { ProductCartDTO } from '../shopping-cart/product-cart/product-cart.dto';
 
 async function run() {
   const opt = {
